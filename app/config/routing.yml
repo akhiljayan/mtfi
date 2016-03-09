@@ -1,3 +1,50 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+mtfi_app:
+    resource: "@MTFIAppBundle/Resources/config/routing.yml"
+    prefix:   /
+    
+_index:
+    pattern: /
+    defaults: { _controller: "MTFIAppBundle:Default:mainRedirect" }
+    
+home_page:
+    pattern: /
+    defaults: { _controller: "MTFIAppBundle:Default:mainRedirect" }
+
+#fyfi_master:
+#    resource: "@FYFIMasterBundle/Resources/config/routing.yml"
+#    prefix:   /
+#    
+#fyfi_scheme:
+#    resource: "@FYFISchemeBundle/Resources/config/routing.yml"
+#    prefix:   /schm
+#
+#_index:
+#    pattern: /
+#    defaults: { _controller: "PortalBundle:Default:home" }
+#
+#home_page:
+#    pattern: /
+#    defaults: { _controller: "PortalBundle:Default:home" }
+#
+#portal:
+#    resource: "@PortalBundle/Resources/config/routing.yml"
+#    prefix:   /
+#    
+#fyfi_master:
+#    resource: "@FYFIMasterBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+nic_secured_login_registration:
+    resource: "@NicSecuredLoginBundle/Resources/config/routing/registration.yml"
+    prefix:   /registration
+    
+nic_secured_login:
+    resource: "@NicSecuredLoginBundle/Resources/config/routing/login.yml"
+    prefix: /
+    
+nic_secured_user_reset:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.yml"
+    prefix:   /resetting
+
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"

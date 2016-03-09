@@ -1,0 +1,38 @@
+services:
+    security.authentication.listener.securedlogin:
+        class:  MTFI\Nic\Bundle\SecuredLoginBundle\Security\Firewall\SecuredLoginAuthenticationListener
+        parent: security.authentication.listener.abstract
+        abstract: true
+        calls:
+            - [loadTranslator, ["@translator"]]
+            - [loadContainer, ["@service_container"]]
+
+    security.encoder.securedlogin:
+        class: MTFI\Nic\Bundle\SecuredLoginBundle\Security\Encoder\SecuredLoginPasswordEncoder
+        
+    security.authenticator.securedlogin:
+        class: MTFI\Nic\Bundle\SecuredLoginBundle\Security\Firewall\SecuredLoginFormAuthenticator
+        arguments: [@security.encoder_factory, @router, %nic_secured_login.route_referer%, "@service_container"]
+        
+    nic_secured_login.security.handler.login_failure_handler:
+        class:  MTFI\Nic\Bundle\SecuredLoginBundle\Security\Handler\LoginFailureHandler
+        arguments: [ @router, %nic_secured_login.login_shield.route_login%]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    nic_secured_login.security.handler.login_success_handler:
+        class: MTFI\Nic\Bundle\SecuredLoginBundle\Security\Handler\LoginSuccessHandler
+        arguments:  [ @router, %nic_secured_login.route_referer%, @security.context, "@service_container" ]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+    nic_secured_login.security.handler.logout_success_handler:
+        class:  MTFI\Nic\Bundle\SecuredLoginBundle\Security\Handler\LogoutSuccessHandler
+        arguments:  [@router, %nic_secured_login.route_referer%, %nic_secured_login.login_shield.route_login%]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+    session_idle_handler:
+        class:  MTFI\Nic\Bundle\SecuredLoginBundle\Security\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.context", "@router", %session_max_idle_time%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }   

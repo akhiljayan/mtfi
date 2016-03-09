@@ -1,0 +1,287 @@
+{% extends 'MTFIAppBundle:MasterTwigs:master.html.twig' %} 
+{% block title %} Dashboard - Superadmin {% endblock %}
+{% block pathindicator %}
+{% endblock %}
+{% block mastercontent %}
+    <style>
+        .sup-div{
+            border: 1px solid rgb(189, 132, 0);
+            border-radius: 10px;
+            min-height:200px;
+            cursor: pointer
+        }
+        .inner-sup .col-md-4:hover{
+            box-shadow: 0 0 2px 2px #4cb1ff;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .inner-sup{
+            min-height:210px;
+        }
+        .font-background{
+            font-size: 500%;
+            text-align: center
+        }
+        .sub-links{ 
+            border-top: 0 solid #ddd !important;
+        }
+
+    </style>
+    {% for type, flashMessage in app.session.flashbag.all %}
+        {% for message in flashMessage %}
+            <h4 class="alert alert-{{type}}">
+                {{ message }}
+            </h4>
+        {% endfor %}
+    {% endfor %}
+    <div class="row super-admin-dash">
+        <div style="padding: 10px 10px 50px 10px;display: inline-block;" class="box box-primary views">
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <div class="panel panel default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th style="border-bottom: 2px solid black;font-size: 14px;">
+                                                <b>Work Expenditure</b>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="sub-links"><a class="add-component-to-divisions" style="margin-top:10px;" href="javascript:void(0);" >Add New Components</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('test_link_to_tabs')}}#}">LINK TO TAB</a></td>
+                                        </tr>
+                                        {#<tr>
+                                            <td class="sub-links"><a href="{{path('admin_subcat_work_component_groups_link')}}">Map Work Group</a></td>
+                                        </tr>#}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <div class="panel panel default" >
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th style="border-bottom: 2px solid black;font-size: 14px;">
+                                                <b>HR Expenditure</b>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('admin_manage_hr_component_group')}}#}">Create HR Group</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('admin_manage_hr_component_group_subcat')}}#}">Map HR Group</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('admin_manage_hr_payscale')}}#}">Map Payscale</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <div class="panel panel default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th style="border-bottom: 2px solid black;font-size: 14px;">
+                                                <b>Other Expenditure</b>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('admin_manage_overall_oe_components')}}#}">OE Items</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('admin_manage_subcat_oe_component')}}#}">Map OE</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="col-md-12" ></div>
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <div class="panel panel default">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th style="border-bottom: 2px solid black;font-size: 14px;">
+                                                <b>Schemes</b>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('add_create_new_scheme')}}#}">New Scheme</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="sub-links"><a href="{#{{path('department_scheme_review')}}#}">Expenditure Estimation</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-4">
+
+                    <div class="box box-info">
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <tbody>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Total Schemes</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totScheme" data-identify="totScheme" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Schemes Approved</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totSchmApprove" data-identify="totSchmApprove" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Pending at Dept.</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totSchmDept" data-identify="totSchmDept" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Pending at AD</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totSchmAdmin" data-identify="totSchmAdmin" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Pending at Planning</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totSchmPlan" data-identify="totSchmPlan" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="line-height: 0.429;">Pending at Finance Dept.</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success scheme" id="totSchmFin" data-identify="totSchmFin" style="cursor: pointer"></span></td>
+                                        </tr>
+                                        {#<tr>
+                                            <td style="line-height: 0.429;">Returned for Revision</td>
+                                            <td style="line-height: 0.429;"><span class="label label-success" style="cursor: pointer">100</span></td>
+                                        </tr>#}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {#Model to add wrk component property#}
+    <div aria-hidden="true" role="dialog"  id="add-edit-wrk-components-modal" class="modal fade">
+        <div class="modal-dialog " style="width:70%">
+            <div class="modal-content ">
+                <div class="modal-body loading"  >
+                    <div id="add-edit-wrk-components" style="min-height:20vh;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div aria-hidden="true" role="dialog"  id="show-scheme-model" class="modal fade">
+        <div class="modal-dialog" style="width:90%">
+            <div class="modal-content ">
+                <div class="modal-body loading"  >
+                    <div id="show-scheme-body" style="min-height:20vh;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {#$.ajax({
+                type: "POST",
+                url: "{{path('quick_scheme_details')}}",
+                beforeSend: function () {
+                },
+                success: function ($data) {
+                    $("#totScheme").text($data.totScheme);
+                    $("#totSchmApprove").text($data.totSchmApprove);
+                    $("#totSchmDept").text($data.totSchmDept);
+                    $("#totSchmAdmin").text($data.totSchmAdmin);
+                    $("#totSchmPlan").text($data.totSchmPlan);
+                    $("#totSchmFin").text($data.totSchmFin);
+                },
+                complete: function () {
+                    $(this).next(".loading-img").remove();
+                }
+            });
+
+            $(".scheme").click(function () {
+                var forr = $(this).data("identify");
+                var path = "{{path('list_total_scheme',{'forr' : '__forr__'})}}";
+                path = path.replace('__forr__', forr);
+                $.ajax({
+                    type: "POST",
+                    url: path,
+                    beforeSend: function () {
+                    },
+                    success: function ($data) {
+                        $("#show-scheme-body").html($data);
+                        $("#show-scheme-model").modal("show");
+                    },
+                    complete: function () {
+                    }
+                });
+            });
+
+            $(".add-component-to-divisions").click(function () {
+                var divisionId = null;
+                var typeId = null;
+                var $path = "{{ path("add_new_multiple_components_while_adding_group",{'divisionId':'__divisionId__','typeId':'__typeId__'}) }}";
+                $path = $path.replace('__divisionId__', divisionId);
+                $path = $path.replace('__typeId__', typeId);
+                $.ajax({
+                    type: "POST",
+                    url: $path,
+                    context: this,
+                    beforeSend: function () {
+                    },
+                    success: function ($data) {
+
+                        $("#add-edit-wrk-components").html($data);
+                        $("#add-edit-wrk-components-modal").modal("show");
+                    },
+                    complete: function () {
+                        $(this).next(".loading-img").remove();
+                    }
+                });
+            });#}
+        });
+    </script>
+
+{% endblock %}
+
+{% block jsInPages %}
+    {{ parent() }}
+{% endblock %}

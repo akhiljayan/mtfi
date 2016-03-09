@@ -1,13 +1,147 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>
+            {% block title %}
+                MTFI
+            {% endblock %}
+        </title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Asset Development Scheme Portal, FYFI, Government of Kerala." />
+        <meta name="author" content="NIC Kerala State Centre, Trivandrum" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/portal/images/gok50.png') }}" />
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/nicresources/adminlte/css/bootstrap.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/nicresources/adminlte/css/AdminLTE.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/nicresources/adminlte/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+            <link href="{{ asset('bundles/mtfiapp/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ asset('bundles/mtfiapp/css/jquery-ui.css') }}" rel="stylesheet" type="text/css" />
+
+            <style type="text/css">
+                @font-face {
+                    font-family: CaflischScriptWeb;
+                    src: url({{ asset('bundles/mtfiapp/images/fonts/font/CaflischScriptWebV2.woff')}});
+                }
+                @font-face {
+                    font-family: VeneerW01Two;
+                    src: url({{ asset('bundles/mtfiapp/images/fonts/font/VeneerW01Two.woff')}});
+                }
+                @font-face {
+                    font-family: CaiFont;
+                    src: url({{ asset('bundles/mtfiapp/images/fonts/font/CaiFont.woff')}});
+                }
+                @font-face {
+                    font-family: DistroBevV2;
+                    src: url({{ asset('bundles/mtfiapp/images/fonts/font/DistroBevV2.woff')}});
+                }
+                @font-face {
+                    font-family: ShouldveKnownShaded-Regular;
+                    src: url({{ asset('bundles/mtfiapp/images/fonts/font/ShouldveKnownShaded-Regular.woff')}});
+                }
+
+                .tooltip {
+                    z-index: 1151 !important;
+                    visibility: visible;
+                }
+                .main-wrapper{
+                    min-height: 100%;
+                    position: relative;
+                }
+                .main-body{
+                    width: 100%;
+                    margin-bottom: 130px;
+                }
+                .footer-main{
+                    border-top: 1px solid rgba(255, 255, 255, 0.3);
+                    bottom: 0;
+                    box-shadow: 10px 10px 5px #888888;
+                    position: absolute;
+                    width: 100%;
+                }
+                label{
+                    font-weight: normal !important;
+                }
+                th{
+                    font-size: 13px;
+                    font-weight: normal !important;
+                }
+            </style>
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('bundles/mtfiapp/js/jquery-1.10.2.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/adminlte/js/bootstrap.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/bootstrap-confirmation.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/js/jquery-ui/minified/jquery.ui.datepicker.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/js/jquery-ui/minified/jquery.ui.core.min.js') }}"  type="text/javascript" ></script>
+            <script src="{{ asset('bundles/nicresources/js/sjcl.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/js/must.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/js/jquery.validate.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/nicresources/js/additional-methods.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/jquery.toast.min.js') }}"  type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/jquery.bootstrap.wizard.js') }}"  type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/tinymce/tinymce.min.js') }}" type="text/javascript"  ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/tiny_mce_config_fyfi.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/sweetalert-dev.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/jquery-ui.min.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/bootstrap-datepicker.min.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/jquery.hashchange.min.js') }}" type="text/javascript" ></script>
+            <script src="{{ asset('bundles/mtfiapp/js/jquery.easytabs.js') }}" type="text/javascript" ></script>
+            <script type="text/javascript">
+                (function ($) {
+                    $(document).ready(function () {
+                        var $imgLoading = '<img src="{{ asset('bundles/mtfiapp/images/ajax-loader.gif')}}" alt="Loading" /> ';
+                        $("a").tooltip({
+                            animation: true,
+                            html: false,
+                            placement: "top",
+                            trigger: "hover",
+                            position: "fixed",
+                            container: 'body',
+                            opacity: 10
+                        });
+                        $("input").addClass("form-control");
+                        $("select").addClass("form-control");
+                        $("button").addClass("form-control");
+                        $("button").tooltip({
+                            animation: true,
+                            html: false,
+                            placement: "top",
+                            trigger: "hover",
+                            position: "fixed",
+                            container: 'body',
+                            opacity: 10
+                        });
+                        $('.date-picker').datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            showButtonPanel: true,
+                            dateFormat: 'dd-MM-yy',
+                            onClose: function (dateText, inst) {
+                                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
+                            }
+                        });
+                    });
+                })(jQuery);
+            </script>
+        {% endblock %}
+        <div class="wrapper main-wrapper">
+            <div class="main-body">
+                {% block body %}
+                {% endblock %}
+            </div>
+            <div class="footer footer-main">
+                {% block footer %}
+                    <footer class="text-center content no-margin" style="border-top: 1px solid #eee">
+                        <span class="">
+                            &COPY;2015 | <a target="blank" title="Go to Official Website of National Infomatics Centre" href="#">NATIONAL INFORMATICS CENTRE - KERALA</a>
+                        </span>
+                    </footer>
+                {% endblock %}
+            </div>
+        </div>
     </body>
 </html>

@@ -1,0 +1,12 @@
+  
+nic_secured_login_registration:
+    resource: "@NicSecuredLoginBundle/Resources/config/routing/registration.yml"
+    prefix:   /registration
+    
+nic_secured_login:
+    resource: "@NicSecuredLoginBundle/Resources/config/routing/login.yml"
+    prefix: /nicsl
+    
+nic_secured_user_reset:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.yml"
+    prefix:   /resetting

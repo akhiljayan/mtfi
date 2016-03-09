@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+{% block title %}
+    FYFI
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% block styleInBundleMasterPages %}
+    {% endblock %}
+    <style type="text/css">
+        .ui-datepicker {z-index: 1151 !important;}
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% block bundle_master_content %} 
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% block jsInBundleMasterPages %}
+    {% endblock %}
+    <script type="text/javascript">
+        $(".formErrorMsg").tooltip({
+            tooltipClass: "formErrorMsgTooltip"
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,4 @@
+reset_request:
+    path:  /request
+    defaults: { _controller: "NicSecuredLoginBundle:Resetting:index" }
+    requirements: { method: post }    

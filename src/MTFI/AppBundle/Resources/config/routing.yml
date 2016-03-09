@@ -1,0 +1,3 @@
+index_routing:
+    resource: "index.yml"
+    prefix:  /

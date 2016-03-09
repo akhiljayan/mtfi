@@ -1,0 +1,41 @@
+registration_home:
+    path:     /home
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:index" }
+
+registration_new:
+    path:     /new
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:new" }
+    
+registration_new_save:
+    path:     /save
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:save" }
+email_availablility_check:
+    path:     /isvalidemail/{email}
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:emailAvailabilityCheck" }    
+registration_show:
+    path:     /{name}/{appln_no}/show
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:show" }
+
+registration_create:
+    path:     /create
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:create" }
+    requirements: { method: post }
+
+registration_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:edit" }
+
+registration_update:
+    path:     /{id}/update
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:update" }
+    requirements: { method: post|put }
+
+registration_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:delete" }
+    requirements: { method: post|delete }
+
+registration_find:
+    path:     /find
+    defaults: { _controller: "NicSecuredLoginBundle:Registration:find" }
+   

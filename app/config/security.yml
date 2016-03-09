@@ -1,24 +1,47 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+        MTFI\Nic\Bundle\SecuredLoginBundle\Entity\User:
+            id: security.encoder.securedlogin
+    role_hierarchy:
+        ROLE_FYFI_USER: [ROLE_FYFI_USER]
+        ROLE_FYFI_ADMIN: [ROLE_FYFI_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_FYFI_USER, ROLE_FYFI_ADMIN, ROLE_SUPER_ADMIN]
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
-
+        fos_userbundle:
+                id: fos_user.user_provider.username_email
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            simple-form:
+                provider:      fos_userbundle
+                authenticator: security.authenticator.securedlogin
+                login_path:    /login
+                csrf_provider: form.csrf_provider
+                use_forward:   true
+                
+                # login success redirecting options (read further below)
+                always_use_default_target_path: false
+                default_target_path: /
+                target_path_parameter: _target_path
+                use_referer: false
+                
+                check_path:    /security/login_check
+                success_handler: nic_secured_login.security.handler.login_success_handler
+                failure_handler: nic_secured_login.security.handler.login_failure_handler
+                failure_path:   /
+                
+                username_parameter: _peru
+                password_parameter: _thakol
+                
+            logout:
+                path:   /prelogout
+                target: /
+                success_handler: nic_secured_login.security.handler.logout_success_handler
+            anonymous:   true
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/fyfi/, roles: [ROLE_FYFI_USER, ROLE_FYFI_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/schm/, roles: [ROLE_FYFI_USER, ROLE_FYFI_ADMIN, ROLE_SUPER_ADMIN] }

@@ -1,6 +1,6 @@
 {
     "minimum-stability": "dev",
-    "name": "akhil/fyfi2016",
+    "name": "akhil/mtfi2016",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -34,7 +34,7 @@
         "knplabs/knp-menu-bundle": "dev-master",
         "zetta/menu-bundle" : "1.1.*",
         "jms/security-extra-bundle" : "dev-master",
-        "sensio/generator-bundle": "2.5.*@dev",
+        "sensio/generator-bundle": "3.0.*",
         "knplabs/knp-paginator-bundle": "dev-master",
         "tui/session-bundle": "~1.1",
         "mpdf/mpdf": "dev-master"

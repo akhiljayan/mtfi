@@ -2,8 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@PortalBundle/Resources/config/services.yml" }
-    - { resource: "@FYFIMasterBundle/Resources/config/services.yml" }
+    - { resource: "@MTFIAppBundle/Resources/config/services.yml" }
+#    - { resource: "@FYFIMasterBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -82,7 +82,7 @@ knp_menu:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Nic\Bundle\SecuredLoginBundle\Entity\User
+    user_class: MTFI\Nic\Bundle\SecuredLoginBundle\Entity\User
 
 
 

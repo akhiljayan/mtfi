@@ -1,0 +1,7 @@
+#mtfi_index:
+#    path:     /
+#    defaults: { _controller: MTFIAppBundle:Default:index }
+#    
+#home_page:
+#    pattern: /
+#    defaults: { _controller: "MTFIAppBundle:Default:mainRedirect" }

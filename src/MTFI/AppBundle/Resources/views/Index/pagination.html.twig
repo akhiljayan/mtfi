@@ -1,0 +1,50 @@
+{#
+This is a custom Pagination Renderer, This Pagination creates ajaxified pagination
+
+THIS FUNCTION EXPECTS THAT THERE WILL BE A JAVASCRIPT FUNCTION Name __loadPage()
+
+ #}
+{% if pageCount > 1 %}
+    <div style="height: 40px;margin-top: 3px; padding: 3px; width: 100%;">
+        <div style="float:left"></div>
+        <span>Showing page {{current}}/{{pageCount}} of {{totalCount}} results</span>
+        <div style="float:right">
+
+            {% if first is defined and current != first %}
+                <div class="btn btn-default" onclick="__loadPage('{{ path(route, query|merge({(pageParameterName): first})) }}')">
+                    <span>&lt;&lt;</span>
+                </div>
+            {% endif %}
+
+            {% if previous is defined %}
+                <div class="btn btn-default" onclick="__loadPage('{{ path(route, query|merge({(pageParameterName): previous})) }}')">
+                    <span >&lt;</span>
+                </div>
+            {% endif %}
+
+            {% for page in pagesInRange %}
+                {% if page != current %}
+                    <div class="btn btn-default" onclick="__loadPage('{{ path(route, query|merge({(pageParameterName): page})) }}')">
+                        <span style="width: 32px;">{{ page }}</span>
+                    </div>
+                {% else %}
+                    <div class="btn btn-primary">{{ page }}</div>
+                {% endif %}
+
+            {% endfor %}
+
+            {% if next is defined %}
+                <div class="btn btn-default" onclick="__loadPage('{{ path(route, query|merge({(pageParameterName): next})) }}')">
+                    <span >&gt;</span>
+                </div>
+            {% endif %}
+
+            {% if last is defined and current != last %}
+                <div class="btn btn-default" onclick="__loadPage('{{ path(route, query|merge({(pageParameterName): last})) }}')" >
+                    <span >&gt;&gt;</span>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endif %}

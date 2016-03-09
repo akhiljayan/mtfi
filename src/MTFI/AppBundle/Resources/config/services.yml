@@ -1,0 +1,15 @@
+parameters:
+    portal.service.profile.class: MTFI\AppBundle\Services\getProfileWorkspace
+    portal.service.setworkspace.class: MTFI\AppBundle\Services\setProfileWorkspace
+
+services:
+    portal.profile.service:
+        class:  "%portal.service.profile.class%"
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
+        
+    portal.profile.setworkspace:
+        class:  "%portal.service.setworkspace.class%"
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
+        
+    
+  

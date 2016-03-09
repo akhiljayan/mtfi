@@ -1,0 +1,5 @@
+{%if user.deptId.deptName is defined%}
+    <h4>{{user.deptId.deptName}}</h4>
+{%else%}
+    <h4>{{user.deptLevelId.deptLevelDesc}}</h4>
+{%endif%}
